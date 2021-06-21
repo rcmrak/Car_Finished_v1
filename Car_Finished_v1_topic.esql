@@ -1,0 +1,14 @@
+
+
+CREATE COMPUTE MODULE Car_Finished_v1_topic
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		SET OutputRoot.XMLNSC.car.vin = InputRoot.JSON.Data.car.vin;
+		SET OutputRoot.Properties.Topic = 'carsfinished/' || InputRoot.JSON.Data.car.type ||'/'|| InputRoot.JSON.Data.car.engine ||'/'|| InputRoot.JSON.Data.car.fuel ||'/'|| InputRoot.JSON.Data.car.transmission;
+		
+		--DECLARE breakpoint CHARACTER '';
+		RETURN TRUE;
+	END;
+
+END MODULE;
